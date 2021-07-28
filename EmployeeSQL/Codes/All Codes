@@ -1,0 +1,5 @@
+--List the following details of each employee: employee number, last name, first name, sex, and salary
+SELECT total_employees.emp_no, total_employees.last_name, total_employees.first_name, total_employees.sex, salaries.salary
+FROM salaries
+INNER JOIN total_employees ON
+total_employees.emp_no=salaries.emp_no
