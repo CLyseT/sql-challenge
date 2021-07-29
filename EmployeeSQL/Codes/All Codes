@@ -27,3 +27,10 @@ INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
 SELECT total_employees.first_name, total_employees.last_name, total_employees.sex
 FROM total_employees 
 WHERE first_name = 'Hercules' AND LEFT(last_name,1) = 'B'
+
+
+-- List all employees in the Sales department, including their employee number, last name, first name, and department name.
+SELECT departments.dept_name, total_employees.emp_no, total_employees.last_name, total_employees.first_name 
+FROM (total_employees INNER JOIN dept_employees ON total_employees.emp_no = dept_employees.emp_no)
+INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
+WHERE dept_name = 'Sales'
