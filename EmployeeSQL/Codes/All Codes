@@ -21,3 +21,9 @@ INNER JOIN total_employees ON total_employees.emp_no = dept_managers.emp_no
 SELECT total_employees.emp_no, total_employees.last_name, total_employees.first_name, departments.dept_name
 FROM (total_employees INNER JOIN dept_employees ON total_employees.emp_no = dept_employees.emp_no)
 INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
+
+
+-- List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+SELECT total_employees.first_name, total_employees.last_name, total_employees.sex
+FROM total_employees 
+WHERE first_name = 'Hercules' AND LEFT(last_name,1) = 'B'
