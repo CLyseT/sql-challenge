@@ -9,6 +9,6 @@ Codes can be found under Employee SQL Folder:
 
 ERD can be found under EmployeeSQL Folder
 
-Disclaimer: WHERE IN nested option did not produce all columns that were requested, completed taskes using the JOIN Nested option to return all column and data requests.
+Disclaimer: WHERE IN nested option did not produce all columns that were requested, completed tasks using the JOIN Nested option to return all column and data requests.
 
 BONUS not completed
