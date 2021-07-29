@@ -4,6 +4,13 @@ FROM salaries
 INNER JOIN total_employees ON
 total_employees.emp_no=salaries.emp_no
 
+OR 
+
+SELECT emp_no, last_name, first_name, sex 
+FROM total_employees
+WHERE emp_no IN (SELECT emp_no FROM salaries);
+
+
 
 -- List first name, last name, and hire date for employees who were hired in 1986.
 SELECT first_name, last_name, hire_date
