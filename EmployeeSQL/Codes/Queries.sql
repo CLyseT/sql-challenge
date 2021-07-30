@@ -23,7 +23,7 @@ INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
 
 -- List first name, last name, and sex for employees whose first name is "Hercules" 
 -- and last names begin with "B."
-SELECT total_employees.first_name, total_employees.last_name, total_employees.sex
+SELECT first_name, last_name, sex
 FROM total_employees 
 WHERE first_name = 'Hercules' AND LEFT(last_name,1) = 'B'
 
@@ -60,6 +60,26 @@ SELECT departments.dept_name, total_employees.emp_no, total_employees.last_name,
 FROM (total_employees INNER JOIN dept_employees ON total_employees.emp_no = dept_employees.emp_no)
 INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
 WHERE dept_name = 'Sales' OR dept_name = 'Development'
+
+-- OR (Nested WHERE IN method does not allow for all column requests to be seen)
+SELECT last_name, first_name, emp_no
+FROM total_employees
+WHERE emp_no IN
+(
+SELECT emp_no
+FROM dept_employees 
+WHERE dept_no IN
+(
+SELECT dept_no
+FROM departments
+WHERE dept_name IN
+(
+SELECT dept_name 
+FROM departments
+WHERE dept_name = 'Sales' OR dept_name = 'Development'
+)
+)
+);
 
 --In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 SELECT last_name, COUNT(last_name) AS "name count"
