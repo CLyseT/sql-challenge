@@ -87,7 +87,7 @@ INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
 QUESTION 5: 
 List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 
-SELECT total_employees.first_name, total_employees.last_name, total_employees.sex
+SELECT first_name, last_name, sex
 FROM total_employees 
 WHERE first_name = 'Hercules' AND LEFT(last_name,1) = 'B'
 
