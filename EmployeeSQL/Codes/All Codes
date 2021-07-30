@@ -101,6 +101,27 @@ INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
 WHERE dept_name = 'Sales'
 
 
+OR (Nested WHERE IN method does not allow for all column requests to be seen)
+
+SELECT last_name, first_name, emp_no
+FROM total_employees
+WHERE emp_no IN
+(
+SELECT emp_no
+FROM dept_employees 
+WHERE dept_no IN
+(
+SELECT dept_no
+FROM departments
+WHERE dept_name IN
+(
+SELECT dept_name 
+FROM departments
+WHERE dept_name = 'Sales'
+)
+)
+);
+
 QUESTION 7:
 List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
