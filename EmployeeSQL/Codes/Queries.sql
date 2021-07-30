@@ -46,3 +46,10 @@ SELECT last_name, COUNT(last_name) AS "name count"
 FROM total_employees
 GROUP BY last_name
 ORDER BY "name count" DESC;
+
+-- created the next query to check in output was correct and received the same data output 
+SELECT total_employees.last_name, COUNT (total_employees.last_name) AS "Name Count"
+FROM total_employees
+JOIN salaries ON salaries.emp_no = total_employees.emp_no
+GROUP BY last_name
+ORDER BY "Name Count" DESC;
