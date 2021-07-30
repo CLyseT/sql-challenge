@@ -130,6 +130,27 @@ FROM (total_employees INNER JOIN dept_employees ON total_employees.emp_no = dept
 INNER JOIN departments ON departments.dept_no = dept_employees.dept_no
 WHERE dept_name = 'Sales' OR dept_name = 'Development'
 
+OR (Nested WHERE IN method does not allow for all column requests to be seen)
+
+SELECT last_name, first_name, emp_no
+FROM total_employees
+WHERE emp_no IN
+(
+SELECT emp_no
+FROM dept_employees 
+WHERE dept_no IN
+(
+SELECT dept_no
+FROM departments
+WHERE dept_name IN
+(
+SELECT dept_name 
+FROM departments
+WHERE dept_name = 'Sales' OR dept_name = 'Development'
+)
+)
+);
+
 
 QUESTION 8: 
 In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
@@ -139,3 +160,10 @@ FROM total_employees
 GROUP BY last_name
 ORDER BY "name count" DESC;
 
+OR (Second code is to check numbers of the first code)
+
+SELECT total_employees.last_name, COUNT (total_employees.last_name) AS "Name Count"
+FROM total_employees
+JOIN salaries ON salaries.emp_no = total_employees.emp_no
+GROUP BY last_name
+ORDER BY "Name Count" DESC;
